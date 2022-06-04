@@ -1,0 +1,15 @@
+.navLink {
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+}
+
+.navLink, .navLinkActive:not(:last-child){
+    margin-right: 20px;
+}
+
+.navLinkActive{
+    color: #0000CC;
+    text-decoration: none;
+    font-size: 20px;
+}

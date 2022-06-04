@@ -1,0 +1,12 @@
+.wrapper{
+    display: flex;
+    margin-top: 20px;
+}
+
+.img{
+    width: 300px;
+    margin-right: 20px;
+}
+
+.decrription
+{margin-right: 50px;}
