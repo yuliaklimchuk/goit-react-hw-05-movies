@@ -1,13 +1,13 @@
 import {  useLocation,useNavigate, createSearchParams} from 'react-router-dom';
-import { useState, useEffect } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import style from './MoviesPage.module.css';
-import { Searchbar } from "../SearchBar/SearchBar.jsx";
+//import { Searchbar } from "../SearchBar/SearchBar.jsx";
+const Searchbar = lazy(() => import("../SearchBar/SearchBar"));
 
-const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = '1a27ac166727ac0de96a34161208f474';
-
-export const MoviesPage = () => { 
+const MoviesPage = () => { 
+    const BASE_URL = 'https://api.themoviedb.org/3';
+    const API_KEY = '1a27ac166727ac0de96a34161208f474';
     const location = useLocation();   
     const navigate = useNavigate();
     const query = new URLSearchParams(location.search).get('query') ?? ''; 
@@ -60,15 +60,19 @@ export const MoviesPage = () => {
     }
 
     return <>
-        <Searchbar onSubmit={handleFormSubmit} />
-        {(films.length !== 0) &&
-            <ul>
-            {films.map(({ id, title }) =>
-                <li key={id} >
-                    <Link className={style.filmsLink}
-                        state={{ from: { location, }, }}
-                        to={`${id}`}>{title}</Link>
-                </li>)}
-        </ul>}
+        <Suspense fallback={<div>Loading...</div>}>
+            <Searchbar onSubmit={handleFormSubmit} />
+        </Suspense>
+            {(films.length !== 0) &&
+                <ul>
+                {films.map(({ id, title }) =>
+                    <li key={id} >
+                        <Link className={style.filmsLink}
+                            state={{ from: { location, }, }}
+                            to={`${id}`}>{title}</Link>
+                    </li>)}
+                </ul>}
     </>
 }
+
+export default MoviesPage;

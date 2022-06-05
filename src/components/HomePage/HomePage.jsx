@@ -2,10 +2,9 @@ import  { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import style from './HomePage.module.css';
 
-const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = '1a27ac166727ac0de96a34161208f474';
-
-export const HomePage = () => { 
+const HomePage = () => { 
+    const BASE_URL = 'https://api.themoviedb.org/3';
+    const API_KEY = '1a27ac166727ac0de96a34161208f474';
     const [popularFilms, setPopularFilms] = useState([]);
 
     useEffect(() => { 
@@ -28,3 +27,5 @@ export const HomePage = () => {
         </ul>
         </>
 }
+
+export default HomePage;

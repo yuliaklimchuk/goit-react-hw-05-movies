@@ -1,21 +1,22 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { Cast } from "../Cast/Cast.jsx";
+import { lazy, Suspense ,useState, useEffect } from "react";
 import style from './MovieDetailsPage.module.css';
-import { Reviews } from 'components/Reviews/Reviews.jsx';
+import { Link, useParams } from "react-router-dom";
+//import { Cast } from "../Cast/Cast.jsx";
+//import { Reviews } from 'components/Reviews/Reviews.jsx';
+const Cast = lazy(() => import("../Cast/Cast"));
+const Reviews = lazy(() => import("../Reviews/Reviews"));
 
-const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = '1a27ac166727ac0de96a34161208f474';
-const IMAGE_URL = "https://image.tmdb.org/t/p/w500";    
-const DEFAULT_LOCATION_STATE = {
-    location: {
-        pathname: '/',
-        search: '',
+const MovieDetailsPage = () => { 
+    const BASE_URL = 'https://api.themoviedb.org/3';
+    const API_KEY = '1a27ac166727ac0de96a34161208f474';
+    const IMAGE_URL = "https://image.tmdb.org/t/p/w500";    
+    const DEFAULT_LOCATION_STATE = {
+        location: {
+            pathname: '/',
+            search: '',
+        }
     }
-}
-
-export const MovieDetailsPage = () => { 
     const { movieId } = useParams();
     const [film, setFilm] = useState(null);
     const navigate = useNavigate();
@@ -64,9 +65,13 @@ export const MovieDetailsPage = () => {
             </ul>
         </div>
         }
-        <Routes>
-            <Route path='cast' element={<Cast movieId={movieId} />}></Route>
-            <Route path='reviews' element={<Reviews movieId={movieId} />}></Route>
-        </Routes>
+        <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+                <Route path='cast' element={<Cast movieId={movieId} />}></Route>
+                <Route path='reviews' element={<Reviews movieId={movieId} />}></Route>
+            </Routes>
+        </Suspense>
     </>
 }
+
+export default MovieDetailsPage;

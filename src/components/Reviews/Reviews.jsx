@@ -1,10 +1,12 @@
 import  { useState, useEffect } from "react";
 import style from './Reviews.module.css';
+import PropTypes from 'prop-types';
 
-const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = '1a27ac166727ac0de96a34161208f474'; 
 
-export const Reviews = ({ movieId }) => { 
+const Reviews = ({ movieId }) => { 
+    
+    const BASE_URL = 'https://api.themoviedb.org/3';
+    const API_KEY = '1a27ac166727ac0de96a34161208f474'; 
     const [reviews, setReviews] = useState([]);
     useEffect(() => { 
         if(!movieId){return}
@@ -31,3 +33,7 @@ export const Reviews = ({ movieId }) => {
         </ul>}
     </>
 }
+Reviews.propTypes = {
+    movieId: PropTypes.string.isRequired,
+};
+export default Reviews;

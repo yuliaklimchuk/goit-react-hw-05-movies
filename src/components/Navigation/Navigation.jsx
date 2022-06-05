@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import style from './Navigation.module.css';
 
-export const Navigation = () => { 
+const Navigation = () => { 
     return <nav >
         <NavLink
             to='/'
@@ -15,3 +15,5 @@ export const Navigation = () => {
         </NavLink>
     </nav>
 }
+
+export default Navigation;

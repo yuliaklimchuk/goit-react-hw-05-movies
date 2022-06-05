@@ -1,11 +1,11 @@
 import  { useState, useEffect } from "react";
 import style from './Cast.module.css';
+import PropTypes from 'prop-types';
 
-const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = '1a27ac166727ac0de96a34161208f474';
-const IMAGE_URL = "https://image.tmdb.org/t/p/w138_and_h175_face";    
-
-export const Cast = ({ movieId }) => { 
+const Cast = ({ movieId }) => { 
+    const BASE_URL = 'https://api.themoviedb.org/3';
+    const API_KEY = '1a27ac166727ac0de96a34161208f474';
+    const IMAGE_URL = "https://image.tmdb.org/t/p/w138_and_h175_face";    
     const [actors, setActors] = useState([]);
     useEffect(() => { 
         if(!movieId){return}
@@ -34,3 +34,7 @@ export const Cast = ({ movieId }) => {
         </ul>}
     </>
 }
+Cast.propTypes = {
+    movieId: PropTypes.string.isRequired,
+};
+export default Cast;

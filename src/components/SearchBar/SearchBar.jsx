@@ -2,7 +2,7 @@ import { useState } from "react";
 import style from './SearchBar.module.css';
 import PropTypes from 'prop-types';
 
-export function Searchbar({ onSubmit }) { 
+function Searchbar({ onSubmit }) { 
     const [filmName, setFilmName] = useState('');
 
     const handleInputChange = (event) => { 
@@ -40,3 +40,5 @@ export function Searchbar({ onSubmit }) {
 Searchbar.propTypes = {
     onSubmit: PropTypes.func.isRequired,
 };
+
+export default Searchbar;
