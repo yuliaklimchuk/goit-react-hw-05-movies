@@ -10,3 +10,8 @@
 
 .decrription
 {margin-right: 50px;}
+
+.list{
+    list-style: none;
+    font-size: 20px;
+}
