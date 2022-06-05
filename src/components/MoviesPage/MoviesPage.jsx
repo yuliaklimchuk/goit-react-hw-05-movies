@@ -1,4 +1,5 @@
-import  { useState, useEffect } from "react";
+import {  useLocation,useNavigate, createSearchParams} from 'react-router-dom';
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import style from './MoviesPage.module.css';
 import { Searchbar } from "../SearchBar/SearchBar.jsx";
@@ -7,8 +8,12 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = '1a27ac166727ac0de96a34161208f474';
 
 export const MoviesPage = () => { 
-    const [filmName, setFilmName] = useState('');
+    const location = useLocation();   
+    const navigate = useNavigate();
+    const query = new URLSearchParams(location.search).get('query') ?? ''; 
+    const [filmName, setFilmName] = useState(query);
     const [films, setFilms] = useState([]);
+
 
     useEffect(() => { 
         if (!filmName) { 
@@ -41,6 +46,17 @@ export const MoviesPage = () => {
     
     const handleFormSubmit = (filmName) => { 
         setFilmName(filmName);
+        configSearchParams(filmName);
+    }
+
+    const configSearchParams = (value) => {
+        const seachParam = {
+            query: value.toLowerCase(),
+        };
+        navigate({
+            ...location,
+            search: createSearchParams(seachParam).toString(),
+        });
     }
 
     return <>
@@ -49,7 +65,9 @@ export const MoviesPage = () => {
             <ul>
             {films.map(({ id, title }) =>
                 <li key={id} >
-                    <Link className={style.filmsLink} to={ `${ id}`}>{title}</Link>
+                    <Link className={style.filmsLink}
+                        state={{ from: { location, }, }}
+                        to={`${id}`}>{title}</Link>
                 </li>)}
         </ul>}
     </>
