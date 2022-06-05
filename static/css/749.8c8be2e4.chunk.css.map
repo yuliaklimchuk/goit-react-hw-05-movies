@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/749.8c8be2e4.chunk.css","mappings":"AAAA,2BACI,cACJ,CAEA,4BACI,UACJ","sources":["components/HomePage/HomePage.module.css"],"sourcesContent":[".filmsItem{\n    font-size: 20px;\n}\n\n.filmsLink{\n    color: #000;\n}"],"names":[],"sourceRoot":""}

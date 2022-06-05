@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/468.11ea1290.chunk.css","mappings":"AAAA,6BAEI,UAAW,CADX,cAEJ","sources":["components/MoviesPage/MoviesPage.module.css"],"sourcesContent":[".filmsLink{\n    font-size: 20px;\n    color: #000;\n}"],"names":[],"sourceRoot":""}
